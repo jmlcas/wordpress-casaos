@@ -1,0 +1,75 @@
+# WordPress-1 - CasaOS
+
+# Primero crear una red
+$ sudo docker network create red_wp1
+
+# Icono para WordPress
+https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wordpress.png
+https://github.com/NX211/homer-icons/blob/master/png/wordpress.png
+
+----------------------------------------------
+
+version: '3.3'
+
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wp1  
+    hostname: wordpress    
+    restart: unless-stopped
+    ports:
+      - "8101:80"
+    environment:
+      WORDPRESS_DB_HOST: db_wp1:3306
+      WORDPRESS_DB_USER: useradmin
+      WORDPRESS_DB_PASSWORD: p4ssw0rd 
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - /DATA/AppData/wp1:/var/www/html       
+    networks:
+      - red_wp1
+
+----------------------------------------------      
+
+version: '3.3'
+
+services:
+
+  db_wp1:
+    image: mariadb:latest    
+    container_name: db_wp1
+    hostname: db_wp1    
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: p4ssw0rd
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: useradmin
+      MYSQL_PASSWORD: p4ssw0rd 
+    volumes:
+      - /DATA/AppData/db_wp1:/var/lib/mysql       
+    networks:
+      - red_wp1 
+
+----------------------------------------------      
+
+version: '3.3'
+
+services:          
+
+  phpmyadmin:
+    image: phpmyadmin:latest    
+    container_name: pma_wp1
+    restart: unless-stopped 
+    ports:      
+      - "8081:80"              
+    depends_on:      
+      - db_wp1        
+    environment:
+      PMA_HOST: db_wp1:3306  
+      MYSQL_ROOT_PASSWORD: p4ssw0rd
+      PMA_USER: useradmin
+      PMA_PASSWORD: p4ssw0rd 
+    networks:
+      - red_wp1
+  
