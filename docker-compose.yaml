@@ -5,6 +5,10 @@ $ sudo docker network create red-wp1
 
 # Icono para WordPress
 https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wordpress.png
+# Icono para MariaDB
+https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mariadb.png
+# Icono para phpMyAdmin
+https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/phpmyadmin.png
 
 ----------------------------------------------
 
@@ -48,8 +52,8 @@ services:
     volumes:
       - /DATA/AppData/db_wp1:/var/lib/mysql       
     networks:
-      - red-wp1 
-
+      - red-wp1
+      
 ----------------------------------------------      
 
 version: '3.3'
@@ -61,13 +65,13 @@ services:
     container_name: pma-wp1
     restart: unless-stopped 
     ports:      
-      - "8081:80"           
-  
+      - "8081:80"         
     environment:
-      PMA_HOST: db-wp1  
       MYSQL_ROOT_PASSWORD: p4ssw0rd
-      PMA_USER: useradmin
-      PMA_PASSWORD: p4ssw0rd 
+      MYSQL_USER: useradmin
+      MYSQL_PASSWORD: p4ssw0rd 
     networks:
       - red-wp1
+
+      
   
