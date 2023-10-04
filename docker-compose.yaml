@@ -68,6 +68,5 @@ services:
       MYSQL_USER: useradmin
       MYSQL_PASSWORD: p4ssw0rd 
 
-
-      
+ 
   
