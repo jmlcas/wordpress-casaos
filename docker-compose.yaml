@@ -5,7 +5,6 @@ $ sudo docker network create red-wp1
 
 # Icono para WordPress
 https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wordpress.png
-https://github.com/NX211/homer-icons/blob/master/png/wordpress.png
 
 ----------------------------------------------
 
@@ -21,7 +20,7 @@ services:
     ports:
       - "8101:80"
     environment:
-      WORDPRESS_DB_HOST: db-wp1:3306
+      WORDPRESS_DB_HOST: db-wp1
       WORDPRESS_DB_USER: useradmin
       WORDPRESS_DB_PASSWORD: p4ssw0rd 
       WORDPRESS_DB_NAME: wordpress
@@ -66,7 +65,7 @@ services:
     depends_on:      
       - db-wp1        
     environment:
-      PMA_HOST: db-wp1:3306  
+      PMA_HOST: db-wp1  
       MYSQL_ROOT_PASSWORD: p4ssw0rd
       PMA_USER: useradmin
       PMA_PASSWORD: p4ssw0rd 
