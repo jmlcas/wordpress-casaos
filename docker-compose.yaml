@@ -63,6 +63,7 @@ services:
     ports:      
       - "8081:80"         
     environment:
+      PMA_HOST: db-wp1
       MYSQL_ROOT_PASSWORD: p4ssw0rd
       MYSQL_USER: useradmin
       MYSQL_PASSWORD: p4ssw0rd 
