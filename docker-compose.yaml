@@ -16,7 +16,7 @@ services:
   wordpress:
     image: wordpress:latest
     container_name: wp1  
-    hostname: wordpress    
+    hostname: wordpress1    
     restart: unless-stopped
     ports:
       - "8101:80"
