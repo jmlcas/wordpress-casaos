@@ -61,9 +61,8 @@ services:
     container_name: pma-wp1
     restart: unless-stopped 
     ports:      
-      - "8081:80"              
-    depends_on:      
-      - db-wp1        
+      - "8081:80"           
+  
     environment:
       PMA_HOST: db-wp1  
       MYSQL_ROOT_PASSWORD: p4ssw0rd
