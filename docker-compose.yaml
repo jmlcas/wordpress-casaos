@@ -1,8 +1,5 @@
 # WordPress-1 - CasaOS
 
-# Primero crear una red
-$ sudo docker network create wordpress1
-
 # Icono para WordPress
 https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wordpress.png
 # Icono para MariaDB
