@@ -1,7 +1,7 @@
 # WordPress-1 - CasaOS
 
 # Primero crear una red
-$ sudo docker network create red-wp1
+$ sudo docker network create wordpress1
 
 # Icono para WordPress
 https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/wordpress.png
@@ -30,8 +30,6 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - /DATA/AppData/wp1:/var/www/html       
-    networks:
-      - red-wp1
 
 ----------------------------------------------      
 
@@ -51,8 +49,6 @@ services:
       MYSQL_PASSWORD: p4ssw0rd 
     volumes:
       - /DATA/AppData/db_wp1:/var/lib/mysql       
-    networks:
-      - red-wp1
       
 ----------------------------------------------      
 
@@ -70,8 +66,7 @@ services:
       MYSQL_ROOT_PASSWORD: p4ssw0rd
       MYSQL_USER: useradmin
       MYSQL_PASSWORD: p4ssw0rd 
-    networks:
-      - red-wp1
+
 
       
   
