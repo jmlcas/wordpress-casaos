@@ -29,8 +29,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - /DATA/AppData/wp1:/var/www/html       
-    networks:
-      - wordpress
+
 ----------------------------------------------      
 
 version: '3.3'
@@ -49,8 +48,7 @@ services:
       MYSQL_PASSWORD: p4ssw0rd 
     volumes:
       - /DATA/AppData/db_wp1:/var/lib/mysql       
-    networks:
-      - wordpress      
+  
 ----------------------------------------------      
 
 version: '3.3'
@@ -68,7 +66,4 @@ services:
       MYSQL_ROOT_PASSWORD: p4ssw0rd
       MYSQL_USER: useradmin
       MYSQL_PASSWORD: p4ssw0rd 
-    networks:
-      - wordpress
- 
   
