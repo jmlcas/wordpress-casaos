@@ -2,7 +2,14 @@
 
 WordPress + MariaDB + phpMyAdmin
 
-Ver en "localhost:8101"
+WordPress ver en "localhost:8101"
+
+phpMyAdmin ver en "localhost:8081"
+
+usuario: useradmin
+
+password: p4ssw0rd
+
 
 Ver vídeo:
 
