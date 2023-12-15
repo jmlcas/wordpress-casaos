@@ -1,16 +1,33 @@
 # WordPress-1 - CasaOS
 
-# Icono para WordPress
-https://icon.casaos.io/main/all/wordpress.png
-
 # Icono para MariaDB
 https://icon.casaos.io/main/all/mariadb.png
+
+# Icono para WordPress
+https://icon.casaos.io/main/all/wordpress.png
 
 # Icono para phpMyAdmin
 https://icon.casaos.io/main/all/phpmyadmin.png
 
 ----------------------------------------------
+version: '3.3'
 
+services:
+
+  db-wp1:
+    image: mariadb:latest    
+    container_name: db-wp1
+    hostname: db-wp1    
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: p4ssw0rd
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: useradmin
+      MYSQL_PASSWORD: p4ssw0rd 
+    volumes:
+      - /DATA/AppData/db_wp1:/var/lib/mysql       
+  
+----------------------------------------------      
 version: '3.3'
 
 services:
@@ -30,25 +47,6 @@ services:
     volumes:
       - /DATA/AppData/wp1:/var/www/html       
 
-----------------------------------------------      
-
-version: '3.3'
-
-services:
-
-  db-wp1:
-    image: mariadb:latest    
-    container_name: db-wp1
-    hostname: db-wp1    
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: p4ssw0rd
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: useradmin
-      MYSQL_PASSWORD: p4ssw0rd 
-    volumes:
-      - /DATA/AppData/db_wp1:/var/lib/mysql       
-  
 ----------------------------------------------      
 
 version: '3.3'
