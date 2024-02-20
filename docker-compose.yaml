@@ -1,67 +1,82 @@
-# WordPress-1 - CasaOS
-
-# Icono para MariaDB
-https://icon.casaos.io/main/all/mariadb.png
-
-# Icono para WordPress
-https://icon.casaos.io/main/all/wordpress.png
-
-# Icono para phpMyAdmin
-https://icon.casaos.io/main/all/phpmyadmin.png
-
-----------------------------------------------
-version: '3.3'
-
+name: wordpress
 services:
-
-  db-wp1:
-    image: mariadb:latest    
-    container_name: db-wp1
-    hostname: db-wp1    
-    restart: unless-stopped
+  wordpress-db:
+    image: mariadb:10.11
+    container_name: wordpress-db
+    restart: unless-stopped   
     environment:
-      MYSQL_ROOT_PASSWORD: p4ssw0rd
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: useradmin
-      MYSQL_PASSWORD: p4ssw0rd 
+      - MYSQL_ROOT_PASSWORD=p4ssw0rd
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=useradmin
+      - MYSQL_PASSWORD=p4ssw0rd
+    ports:
+      - target: 3306
+        published: "3306"
+        protocol: tcp       
     volumes:
-      - /DATA/AppData/db_wp1:/var/lib/mysql       
-  
-----------------------------------------------      
-version: '3.3'
-
-services:
-
+      - type: bind
+        source: /DATA/AppData/$AppID/data-db
+        target: /var/lib/mysql
+    privileged: true
+    networks:
+      - wordpress-db
   wordpress:
     image: wordpress:latest
-    container_name: wp1  
-    hostname: wordpress1    
+    container_name: wordpress 
     restart: unless-stopped
+    depends_on:
+      wordpress-db:
+        condition: service_started
+        required: true 
     ports:
-      - "8101:80"
+      - target: 80
+        published: "8101"
+        protocol: tcp
     environment:
-      WORDPRESS_DB_HOST: db-wp1
-      WORDPRESS_DB_USER: useradmin
-      WORDPRESS_DB_PASSWORD: p4ssw0rd 
-      WORDPRESS_DB_NAME: wordpress
+      - WORDPRESS_DB_HOST=wordpress-db:3306
+      - WORDPRESS_DB_USER=useradmin
+      - WORDPRESS_DB_PASSWORD=p4ssw0rd 
+      - WORDPRESS_DB_NAME=wordpress
     volumes:
-      - /DATA/AppData/wp1:/var/www/html       
-
-----------------------------------------------      
-
-version: '3.3'
-
-services:          
-
+      - type: bind
+        source: /DATA/AppData/$AppID/wp-data
+        target: /var/www/html
+    networks:
+      - wordpress-db        
+    privileged: true     
   phpmyadmin:
     image: phpmyadmin:latest    
-    container_name: pma-wp1
-    restart: unless-stopped 
-    ports:      
-      - "8081:80"         
+    container_name: pma-wp
+    restart: unless-stopped
+    ports:
+      - target: 80
+        published: "8081"
+        protocol: tcp 
     environment:
-      PMA_HOST: db-wp1
-      MYSQL_ROOT_PASSWORD: p4ssw0rd
-      MYSQL_USER: useradmin
-      MYSQL_PASSWORD: p4ssw0rd 
-  
+      - PMA_HOST=wordpress-db:3306            
+      - MYSQL_ROOT_PASSWORD=p4ssw0rd
+      - MYSQL_USER=useradmin
+      - MYSQL_PASSWORD=p4ssw0rd 
+    networks:
+      - wordpress-db              
+    privileged: true 
+networks:
+  wordpress-db:
+     name: wordpress-db      
+x-casaos:
+  author: Labarta
+  category: Utilities 
+  icon: https://icon.casaos.io/main/all/wordpress.png 
+  index: /  
+  port_map: "8101"
+  scheme: http
+  store_app_id: wordpress
+  title:
+    custom: wordpress
+  description:
+    en_us: WordPress for CasaOS.
+  tagline:
+    en_us: Provides additional features to CasaOS.
+  architectures:
+    - amd64
+    - arm64  
