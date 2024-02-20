@@ -1,4 +1,4 @@
-# wp1-casaos
+# wordpress-casaos
 
 WordPress + MariaDB + phpMyAdmin
 
@@ -12,10 +12,8 @@ password: p4ssw0rd
 
 ### NOTA IMPORTANTE - 
 
-Cambios sobre lo dicho y visto en el vídeo: Instalar primero la base de datos "db-wp1" y utilizar este nombre como network para los tres docker-compose.
+Cambios sobre lo dicho y visto en el vídeo: Copiar, pegar y listo.
 
 
 
-Ver vídeo:
-
-[![Alt text](https://img.youtube.com/vi/bncLPxOW-b0/0.jpg)](https://www.youtube.com/watch?v=bncLPxOW-b0)
+En espera de hacer vídeo
