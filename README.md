@@ -1,4 +1,4 @@
-# wordpress-casaos
+# WordPress-CasaOS
 
 WordPress + MariaDB + phpMyAdmin
 
