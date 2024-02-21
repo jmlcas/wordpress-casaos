@@ -2,18 +2,16 @@
 
 WordPress + MariaDB + phpMyAdmin
 
-WordPress ver en "localhost:8101"
+WordPress: ver en "localhost:8101"
 
-phpMyAdmin ver en "localhost:8081"
+phpMyAdmin: "localhost:8081"  - usuario: useradmin - password: p4ssw0rd
 
-usuario: useradmin
+Ver vídeo:
 
-password: p4ssw0rd
-
-### NOTA IMPORTANTE - 
-
-Cambios sobre lo dicho y visto en el vídeo: Copiar, pegar y listo.
+[![Alt text](https://img.youtube.com/vi/LhZY6qHRDn8/0.jpg)](https://www.youtube.com/watch?v=LhZY6qHRDn8)
 
 
 
-En espera de hacer vídeo
+
+
+
